@@ -1,0 +1,31 @@
+{% extends 'matrice.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="../static/style.css">  
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} 
+            {{ object.title }} 
+            {% endblock title %}
+        </h1>
+        <p class=" text-muted">  Auteur : {{ post.author }}</p>
+        <h class=" text-muted">  Date de publication : {{ post.created_on}}</p>
+        <p class=" text-muted">  Mise à jour : {{ post.updated_on}}</p>
+        <img src="{{ post.image.url}}" alt="{{ post.title }}" width="300" height="400">
+        </p>
+        <p class="card-text ">{{ object.content | safe }}</p>
+      </div>
+    </div>
+    {% block inforuban %} 
+    {% include 'inforuban.html' %} 
+    {% endblock inforuban %}
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}

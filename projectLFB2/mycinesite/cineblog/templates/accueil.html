@@ -1,0 +1,51 @@
+{% extends "matrice.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="../static/style.css">
+<body>
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <center>
+                        <h1 class=" site-heading my-4 mt-3 text-white"> Dalal Diam Fi Moy CinéBlog </h1>
+                        <p class="text-light">Nioo beugg Cinéma . . . !  Yaw tamit ? &nbsp </p>
+                    </center>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">by {{ post.author }} | on {{ post.created_on}} </p>
+                    <center>
+                    </p>    
+                    <img src="{{ post.image.url}}" alt="{{ post.title }}" width="300" height="400">
+                    </center>
+                    </p>
+                    <p class="card-text">{{post.content|slice:":180" }} [...]</p>
+                    <center>
+                    <a href="{% url 'pagepost' post.slug  %}" class="btn btn-primary">Yaatal &rangle;&rangle;</a>
+                    </center>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% block inforuban %} {% include 'inforuban.html' %} {% endblock inforuban %}
+    </div>
+</div>
+{%endblock%}
+       
